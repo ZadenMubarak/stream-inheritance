@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from 'primereact/button';
 
 import Lottie from 'lottie-react';
-import animationData from '../components/tech-people.json';
+import animationData from '../components/Assets/tech-people.json';
 
 const HomePage = () => {
     const navigate = useNavigate();
