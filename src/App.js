@@ -9,6 +9,7 @@ import 'primeicons/primeicons.css';
 import Navbar from './components/NavbarComponent';
 import HomePage from './pages/HomePage';
 import ManagePage from './pages/ManagePage';
+import CreateForm from './pages/CreateForm';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Routes>
           <Route path='/' element={<HomePage/>} />
           <Route path='/manage' element={<ManagePage/>} />
+          <Route path='/create-form' element={<CreateForm/>}/>
         </Routes>
     </BrowserRouter>
     </div>

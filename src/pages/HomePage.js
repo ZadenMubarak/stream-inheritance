@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from 'primereact/button';
 import { Timeline } from 'primereact/timeline';
 import { Divider } from 'primereact/divider';
+import { Card } from 'primereact/card';
 import Lottie from 'lottie-react';
 import animationData from '../components/Assets/tech-people.json';
 
@@ -44,9 +45,16 @@ const HomePage = () => {
               </div>
           </div>
           <Divider/>
-          <div>
+          <div style={{height:"80px"}}></div>
+          <div id='how-it-works'>
 
-          <Timeline value={events} align="alternate" content={(item) => item.status}  marker={customizedMarker}/>
+            <div className='flex align-items-center justify-content-center card'>
+
+            <Card title="How it works" className='shadow-6' style={{width:"95%"}}>
+              <Timeline value={events} align="alternate" content={(item) => item.status}  marker={customizedMarker}/>
+            </Card>
+            </div>
+
           </div>
           <div style={{height:"90px"}}></div>
       

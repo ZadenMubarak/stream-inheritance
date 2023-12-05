@@ -21,12 +21,13 @@ const Navbar = () => {
 
     const endContent = (
         <React.Fragment>
-            <a href='#how-it-works'>
+            <a href='/#how-it-works'>
 
             <Button label='How it works' className="mr-2" text/>
             </a>
-            <Button label='connect' className="mr-2" text/>
+            <Button label='create' className="mr-2" text onClick={() => navigate('/create-form')}/>
             <Button label='manage' className="mr-2" text onClick={() => navigate('/manage')}/>
+            <Button label='connect wallet' className="mr-2" icon='pi pi-wallet'/>
         </React.Fragment>
     );
 
