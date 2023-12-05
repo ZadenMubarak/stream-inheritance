@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 // import './App.css';
 import { BrowserRouter, Route, Routes} from 'react-router-dom'
 
@@ -9,15 +8,17 @@ import 'primeicons/primeicons.css';
 
 import Navbar from './components/NavbarComponent';
 import HomePage from './pages/HomePage';
+import ManagePage from './pages/ManagePage';
 
 function App() {
   return (
     <div className="App">
-      <Navbar/>
       <BrowserRouter> 
+      <Navbar/>
       {/* <Navbar/> */}
         <Routes>
           <Route path='/' element={<HomePage/>} />
+          <Route path='/manage' element={<ManagePage/>} />
         </Routes>
     </BrowserRouter>
     </div>
