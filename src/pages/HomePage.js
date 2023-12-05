@@ -12,7 +12,7 @@ const HomePage = () => {
     const navigate = useNavigate();
     const events = [
         { status: 'create profile', date: '15/10/2020 10:30', icon: 'pi pi-user', color: '#9C27B0', image: 'game-controller.jpg' },
-        { status: 'generate smart wallet', date: '15/10/2020 14:00', icon: 'pi pi-cog', color: '#673AB7' },
+        { status: 'generate smart wallet', date: '15/10/2020 14:00', icon: 'pi pi-cog pi-spin', color: '#673AB7' },
         { status: 'beneficiary details', date: '15/10/2020 16:15', icon: 'pi pi-money-bill', color: '#FF9800' },
         { status: 'setup stream payment', date: '16/10/2020 10:00', icon: 'pi pi-check', color: '#607D8B' },
         { status: 'move assets and relax', date: '16/10/2020 10:00', icon: 'pi pi-send', color: '#00BCD4' } // Change color here
