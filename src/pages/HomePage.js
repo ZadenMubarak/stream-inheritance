@@ -50,7 +50,7 @@ const HomePage = () => {
 
             <div className='flex align-items-center justify-content-center card'>
 
-            <Card title="How it works" className='shadow-6' style={{width:"95%"}}>
+            <Card title="How it works" className='shadow-6' style={{width:"98%"}}>
               <Timeline value={events} align="alternate" content={(item) => item.status}  marker={customizedMarker}/>
             </Card>
             </div>
