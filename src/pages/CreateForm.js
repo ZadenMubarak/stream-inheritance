@@ -10,6 +10,8 @@ import { Toast } from 'primereact/toast';
 import { Dropdown } from 'primereact/dropdown';
 import { Checkbox } from "primereact/checkbox";
 
+import { SiChainlink } from "react-icons/si";
+
 const CreateForm = () => {
     const [section, setSection] = useState(0);
     const [title, setTitle] = useState('');
@@ -60,7 +62,8 @@ const CreateForm = () => {
 
                     <label className="block text-900 font-medium mb-2">Beneficiary name</label>
                     <InputText placeholder='Enter beneficiary name' className="w-full mb-3" onChange={(e)=> {setAuthor(e.target.value)}}/>
-                </div>) }
+                </div>
+                )}
 
                 { section ===1 && (
                     <div>
@@ -70,33 +73,93 @@ const CreateForm = () => {
                         <label className="block text-900 font-medium mb-2">Email Address</label>
                         <InputText placeholder='Contract Address' className="w-full mb-3" onChange={(e)=> {seFunctionContractAddress(e.target.value)}}/>
 
-                        <label  className="block text-900 font-medium mb-2">Function creator contract address</label>
-                        <InputText placeholder='Creator Address' className="w-full mb-3" onChange={(e)=> {setCreatoAddress(e.target.value)}}/>
+                        <label  className="block text-900 font-medium mb-2">Number of months to stream</label>
+                        <InputText keyfilter="int" placeholder='Creator Address' className="w-full mb-3" onChange={(e)=> {setCreatoAddress(e.target.value)}}/>
 
                         <label  className="block text-900 font-medium mb-2">select a chain</label>
+                        {/* chainlink */}
                         <div className="">
                             <Checkbox inputId="ingredient2" name="pizza" value="Mushroom" onChange={e => setIsPaid(e.checked)} checked={isPaid} />
-                            <label htmlFor="ingredient2" className="ml-2">{isPaid ? paid='yes': paid='no'}</label>
+                            <label htmlFor="ingredient2" className="ml-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="20" height="20">
+                                    <image xlinkHref="https://cryptologos.cc/logos/chainlink-link-logo.svg?v=029" width="64" height="64" />
+                                </svg>
+                                {isPaid ? paid='yes': paid='no'}
+                            </label>
                         </div>
 
                         <div className="h-1rem"></div>
+                        {/* ethereum */}
                         <div className="">
                             <Checkbox inputId="ingredient2" name="pizza" value="Mushroom" onChange={e => setIsPaid(e.checked)} checked={isPaid} />
-                            <label htmlFor="ingredient2" className="ml-2">{isPaid ? paid='yes': paid='no'}</label>
+                            <label htmlFor="ingredient2" className="ml-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="20" height="20">
+                                    <image xlinkHref="https://cryptologos.cc/logos/ethereum-eth-logo.svg?v=029" width="64" height="64" />
+                                </svg>
+                                {isPaid ? paid='yes': paid='no'}
+                            </label>
                         </div>
 
                         <div className="h-1rem"></div>
+                        {/* polygon */}
                         <div className="">
                             <Checkbox inputId="ingredient2" name="pizza" value="Mushroom" onChange={e => setIsPaid(e.checked)} checked={isPaid} />
-                            <label htmlFor="ingredient2" className="ml-2">{isPaid ? paid='yes': paid='no'}</label>
+                            <label htmlFor="ingredient2" className="ml-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="20" height="20">
+                                    <image xlinkHref="https://cryptologos.cc/logos/polygon-matic-logo.svg?v=029" width="64" height="64" />
+                                </svg>
+                                {isPaid ? paid='yes': paid='no'}
+                            </label>
                         </div>
 
                         <div className="h-1rem"></div>
-                        <label className="block text-900 font-medium mb-2">is function Audited?</label>
+                        {/* bnb */}
                         <div className="flex align-items-center">  
                             <Checkbox inputId="ingredient2" name="pizza" value="Mushroom" onChange={e => setChecked(e.checked)} checked={checked} />
-                            <label htmlFor="ingredient2" className="ml-2">{isPaid ? paid='yes': paid='no'}</label>
+                            <label htmlFor="ingredient2" className="ml-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="20" height="20">
+                                    <image xlinkHref="https://cryptologos.cc/logos/bnb-bnb-logo.svg?v=029" width="64" height="64" />
+                                </svg>
+                                {isPaid ? paid='yes': paid='no'}
+                            </label>
                         </div>
+
+                        <div className="h-1rem"></div>
+                        {/*arbitrium */}
+                        <div className="flex align-items-center">  
+                            <Checkbox inputId="ingredient2" name="pizza" value="Mushroom" onChange={e => setChecked(e.checked)} checked={checked} />
+                            <label htmlFor="ingredient2" className="ml-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="20" height="20">
+                                    <image xlinkHref="https://cryptologos.cc/logos/arbitrum-arb-logo.svg?v=029" width="64" height="64" />
+                                </svg>
+                                {isPaid ? paid='yes': paid='no'}
+                            </label>
+                        </div>
+
+                        <div className="h-1rem"></div>
+                        {/*avalanche*/}
+                        <div className="flex align-items-center">  
+                            <Checkbox inputId="ingredient2" name="pizza" value="Mushroom" onChange={e => setChecked(e.checked)} checked={checked} />
+                            <label htmlFor="ingredient2" className="ml-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="20" height="20">
+                                    <image xlinkHref="https://cryptologos.cc/logos/avalanche-avax-logo.svg?v=029" width="64" height="64" />
+                                </svg>
+                                {isPaid ? paid='yes': paid='no'}
+                            </label>
+                        </div>
+
+                        <div className="h-1rem"></div>
+                        {/*optimism*/}
+                        <div className="flex align-items-center">  
+                            <Checkbox inputId="ingredient2" name="pizza" value="Mushroom" onChange={e => setChecked(e.checked)} checked={checked} />
+                            <label htmlFor="ingredient2" className="ml-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="20" height="20">
+                                    <image xlinkHref="https://cryptologos.cc/logos/optimism-ethereum-op-logo.svg?v=029" width="64" height="64" />
+                                </svg>
+                                {isPaid ? paid='yes': paid='no'}
+                            </label>
+                        </div>
+
                     </div>
                 )}
 
