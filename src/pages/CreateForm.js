@@ -13,11 +13,9 @@ import { Checkbox } from "primereact/checkbox";
 const CreateForm = () => {
     const [section, setSection] = useState(0);
     const [title, setTitle] = useState('');
-    const [name, setName] = useState('');
     const [author, setAuthor] = useState('');
     const [functionContractAddress, seFunctionContractAddress] = useState('');
     const [creatorAddress, setCreatoAddress] = useState('');
-    const [shortDescription, setShortDescription] = useState('');
     const [longDescription, setLongDescription] = useState('');
     const [usage, setUsage] = useState('');
     const [checked, setChecked] = useState(false);
@@ -27,7 +25,7 @@ const CreateForm = () => {
     let yes = '';
     let paid = '';
     const submissionButtonEventHandling = () => {
-        if (!title || !name || !author || !functionContractAddress || !shortDescription || !longDescription || !usage || !creatorAddress) {
+        if (!title || !author || !functionContractAddress || !longDescription || !usage || !creatorAddress) {
             toast.current.show({severity:'error', summary: 'Incomplete', detail:' Please fill in all the prompts', life: 3000});
 
         }else {
@@ -57,26 +55,19 @@ const CreateForm = () => {
 
                 { section === 0 && 
                 (<div>
-                    <label className="block text-900 font-medium mb-2">Function name</label>
+                    <label className="block text-900 font-medium mb-2">Name</label>
                     <InputText placeholder='Title' className="w-full mb-3" onChange={(e)=> {setTitle(e.target.value)}}/>
 
-                    <label className="block text-900 font-medium mb-2">Name</label>
-                    <InputText placeholder='Name' className="w-full mb-3" onChange={(e)=> {setName(e.target.value)}}/>
-
-                    <label className="block text-900 font-medium mb-2">Author</label>
+                    <label className="block text-900 font-medium mb-2">Beneficiary name</label>
                     <InputText placeholder='Author' className="w-full mb-3" onChange={(e)=> {setAuthor(e.target.value)}}/>
                 </div>) }
 
                 { section ===1 && (
                     <div>
-
-                        <label className="block text-900 font-medium mb-2">Short description</label>
-                        <InputTextarea placeholder='Short details' className="w-full mb-3"  onChange={(e)=> {setShortDescription(e.target.value)}}/>
-
                         <label className="block text-900 font-medium mb-2">long description</label>
                         <InputTextarea placeholder='long details' className="w-full mb-3" onChange={(e)=> {setLongDescription(e.target.value)}}/>
 
-                        <label className="block text-900 font-medium mb-2">Function contract address</label>
+                        <label className="block text-900 font-medium mb-2">Email Address</label>
                         <InputText placeholder='Contract Address' className="w-full mb-3" onChange={(e)=> {seFunctionContractAddress(e.target.value)}}/>
 
                         <label  className="block text-900 font-medium mb-2">Function creator contract address</label>
