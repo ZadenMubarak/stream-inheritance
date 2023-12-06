@@ -22,6 +22,14 @@ const CreateForm = () => {
     const [usage, setUsage] = useState('');
     const [checked, setChecked] = useState(false);
     const [isPaid, setIsPaid] = useState(false);
+    const [chainlink, setChinlink] = useState(false);
+    const [ethereum, setEthereum] = useState(false);
+    const [polygon, setPolygon] = useState(false);
+    const [bnb, setBNB] = useState(false);
+    const [arbutrium, setArbitrium] = useState(false);
+    const [avalanche, setAvalanche] = useState(false);
+    const [optimism, setOptimism] = useState(false);
+    // chainlikn eth polygon bnb arbitrium avalanchel optimism
     const toast = useRef(null);
 
     let yes = '';
@@ -84,7 +92,7 @@ const CreateForm = () => {
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="20" height="20">
                                     <image xlinkHref="https://cryptologos.cc/logos/chainlink-link-logo.svg?v=029" width="64" height="64" />
                                 </svg>
-                                {isPaid ? paid='yes': paid='no'}
+                                chainlink
                             </label>
                         </div>
 
@@ -96,7 +104,7 @@ const CreateForm = () => {
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="20" height="20">
                                     <image xlinkHref="https://cryptologos.cc/logos/ethereum-eth-logo.svg?v=029" width="64" height="64" />
                                 </svg>
-                                {isPaid ? paid='yes': paid='no'}
+                                ethereum
                             </label>
                         </div>
 
@@ -108,7 +116,7 @@ const CreateForm = () => {
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="20" height="20">
                                     <image xlinkHref="https://cryptologos.cc/logos/polygon-matic-logo.svg?v=029" width="64" height="64" />
                                 </svg>
-                                {isPaid ? paid='yes': paid='no'}
+                                polygon
                             </label>
                         </div>
 
@@ -120,7 +128,7 @@ const CreateForm = () => {
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="20" height="20">
                                     <image xlinkHref="https://cryptologos.cc/logos/bnb-bnb-logo.svg?v=029" width="64" height="64" />
                                 </svg>
-                                {isPaid ? paid='yes': paid='no'}
+                                BNB
                             </label>
                         </div>
 
@@ -132,7 +140,7 @@ const CreateForm = () => {
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="20" height="20">
                                     <image xlinkHref="https://cryptologos.cc/logos/arbitrum-arb-logo.svg?v=029" width="64" height="64" />
                                 </svg>
-                                {isPaid ? paid='yes': paid='no'}
+                                arbitrium
                             </label>
                         </div>
 
@@ -144,7 +152,7 @@ const CreateForm = () => {
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="20" height="20">
                                     <image xlinkHref="https://cryptologos.cc/logos/avalanche-avax-logo.svg?v=029" width="64" height="64" />
                                 </svg>
-                                {isPaid ? paid='yes': paid='no'}
+                                avalnche
                             </label>
                         </div>
 
@@ -156,7 +164,7 @@ const CreateForm = () => {
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="20" height="20">
                                     <image xlinkHref="https://cryptologos.cc/logos/optimism-ethereum-op-logo.svg?v=029" width="64" height="64" />
                                 </svg>
-                                {isPaid ? paid='yes': paid='no'}
+                                optimism
                             </label>
                         </div>
 
