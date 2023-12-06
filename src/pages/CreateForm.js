@@ -10,15 +10,15 @@ import { Toast } from 'primereact/toast';
 import { Dropdown } from 'primereact/dropdown';
 import { Checkbox } from "primereact/checkbox";
 
-import { SiChainlink } from "react-icons/si";
+import { AppStateService } from "../AppstateService/AppStateService";
 
 const CreateForm = () => {
     const [section, setSection] = useState(0);
-    const [title, setTitle] = useState('');
-    const [author, setAuthor] = useState('');
-    const [functionContractAddress, seFunctionContractAddress] = useState('');
-    const [creatorAddress, setCreatoAddress] = useState('');
-    const [longDescription, setLongDescription] = useState('');
+    const [streamCreatorName, setStreamCreatorName] = useState('');
+    const [benficiaryName, setBenficiaryName] = useState('');
+    const [walletAddress, seWalletAddress] = useState('');
+    const [numberOfMonthsToStream, setNumberOfMonthsToStream] = useState('');
+    const [beneficiaryDetails, setBeneficiaryDetails] = useState('');
     const [usage, setUsage] = useState('');
     const [checked, setChecked] = useState(false);
     const [isPaid, setIsPaid] = useState(false);
@@ -31,13 +31,26 @@ const CreateForm = () => {
     const [optimism, setOptimism] = useState(false);
     // chainlikn eth polygon bnb arbitrium avalanchel optimism
     const toast = useRef(null);
+    const service = new AppStateService();
+
+    const IdArray = service.polyBaseResponse;
 
     const submissionButtonEventHandling = () => {
-        if (!title || !author || !functionContractAddress || !longDescription || !usage || !creatorAddress) {
+        if (!streamCreatorName || !benficiaryName || !walletAddress || !beneficiaryDetails || !usage || !numberOfMonthsToStream) {
             toast.current.show({severity:'error', summary: 'Incomplete', detail:' Please fill in all the prompts', life: 3000});
 
         }else {
             toast.current.show({severity:'success', summary: 'Success', detail:'Form successfully submitted', life: 3000});
+            const db_values = {
+                id: IdArray.length + 1,
+                streamCreatorName: streamCreatorName,
+                benficiaryName: benficiaryName,
+                beneficiaryDetails: beneficiaryDetails,
+                numberOfMonthsToStream: numberOfMonthsToStream,
+                walletAddress: walletAddress,
+            }
+
+            service.createProject(db_values);
  
         }
     }
@@ -64,23 +77,23 @@ const CreateForm = () => {
                 { section === 0 && 
                 (<div>
                     <label className="block text-900 font-medium mb-2">Stream creator name</label>
-                    <InputText placeholder='Enter your name' className="w-full mb-3" onChange={(e)=> {setTitle(e.target.value)}}/>
+                    <InputText placeholder='Enter your name' className="w-full mb-3" onChange={(e)=> {setStreamCreatorName(e.target.value)}}/>
 
                     <label className="block text-900 font-medium mb-2">Beneficiary name</label>
-                    <InputText placeholder='Enter beneficiary name' className="w-full mb-3" onChange={(e)=> {setAuthor(e.target.value)}}/>
+                    <InputText placeholder='Enter beneficiary name' className="w-full mb-3" onChange={(e)=> {setBenficiaryName(e.target.value)}}/>
                 </div>
                 )}
 
                 { section ===1 && (
                     <div>
-                        <label className="block text-900 font-medium mb-2">long description</label>
-                        <InputTextarea placeholder='long details' className="w-full mb-3" onChange={(e)=> {setLongDescription(e.target.value)}}/>
+                        <label className="block text-900 font-medium mb-2">Description of beneficiary and stream plan</label>
+                        <InputTextarea placeholder='details' className="w-full mb-3" onChange={(e)=> {setBeneficiaryDetails(e.target.value)}}/>
 
-                        <label className="block text-900 font-medium mb-2">Email Address</label>
-                        <InputText placeholder='Contract Address' className="w-full mb-3" onChange={(e)=> {seFunctionContractAddress(e.target.value)}}/>
+                        <label className="block text-900 font-medium mb-2">wallet address</label>
+                        <InputText placeholder='Enter address' className="w-full mb-3" onChange={(e)=> {seWalletAddress(e.target.value)}}/>
 
-                        <label  className="block text-900 font-medium mb-2">Number of months to stream</label>
-                        <InputText keyfilter="int" placeholder='Creator Address' className="w-full mb-3" onChange={(e)=> {setCreatoAddress(e.target.value)}}/>
+                        <label  className="block text-900 font-medium mb-2">Release funds aftoer how many months</label>
+                        <InputText keyfilter="int" placeholder='Release period' className="w-full mb-3" onChange={(e)=> {setNumberOfMonthsToStream(e.target.value)}}/>
 
                         <label  className="block text-900 font-medium mb-2">select a chain</label>
                         {/* chainlink */}

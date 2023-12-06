@@ -28,9 +28,9 @@ export class AppStateService{
         return this.nextPolybaseRecordID.toString();
     }
 
-    async getItemsFromRecord () {
-        this.getUseAddress();
-        await this.collectionReference.get().then((data)=>{
+    async getItemsFromRecord (address) {
+        // this.getUseAddress();
+        await this.collectionReference.where("walletAddress", "==", address).get().then((data)=>{
             let array = data.data;
             let temp = []  
             array.forEach(element => {
@@ -47,13 +47,14 @@ export class AppStateService{
     }
 
     async createProject(projectObject){
-        let id = this.generatePolybaseID()
+        // let id = this.generatePolybaseID()
         await this.collectionReference.create([
-            id,
+            projectObject.id,
             projectObject.streamCreatorName,
             projectObject.benficiaryName,
             projectObject.beneficiaryDetails,
             projectObject.numberOfMonthsToStream,
+            projectObject.walletAddress,
         ])
     }
 
