@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 // import { useNavigate, Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
@@ -7,9 +7,18 @@ import logo from './Assets/logo.svg'
 import { Toolbar } from 'primereact/toolbar';
 import { Button } from 'primereact/button';
 
+import { AppStateService } from '../AppstateService/AppStateService';
+
 const Navbar = () => {
     const navigate = useNavigate();
-   
+    let service = new AppStateService();
+    const [buttonText, setButtonText] = useState("Connect Wallet");
+
+    const connect = () => {
+        service.connectToMetaMask()
+        setButtonText('connected')
+    }
+
     const startContent = (
         <React.Fragment>
             <Button className="" onClick={()=> navigate('/')} text >
@@ -27,7 +36,7 @@ const Navbar = () => {
             </a>
             <Button label='create' className="mr-2" text onClick={() => navigate('/create-form')}/>
             <Button label='manage' className="mr-2" text onClick={() => navigate('/manage')}/>
-            <Button label='connect wallet' className="mr-2" icon='pi pi-wallet'/>
+            <Button label={buttonText} className="mr-2" icon='pi pi-wallet' onClick={connect}/>
         </React.Fragment>
     );
 

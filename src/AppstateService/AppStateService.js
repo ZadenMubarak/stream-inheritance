@@ -1,5 +1,5 @@
 
-class AppStateService{
+export class AppStateService{
     constructor() {
         if (typeof AppStateService === 'object'){
             console.log("instance returned");

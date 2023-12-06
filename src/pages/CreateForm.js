@@ -55,11 +55,11 @@ const CreateForm = () => {
 
                 { section === 0 && 
                 (<div>
-                    <label className="block text-900 font-medium mb-2">Name</label>
-                    <InputText placeholder='Title' className="w-full mb-3" onChange={(e)=> {setTitle(e.target.value)}}/>
+                    <label className="block text-900 font-medium mb-2">Stream creator name</label>
+                    <InputText placeholder='Enter your name' className="w-full mb-3" onChange={(e)=> {setTitle(e.target.value)}}/>
 
                     <label className="block text-900 font-medium mb-2">Beneficiary name</label>
-                    <InputText placeholder='Author' className="w-full mb-3" onChange={(e)=> {setAuthor(e.target.value)}}/>
+                    <InputText placeholder='Enter beneficiary name' className="w-full mb-3" onChange={(e)=> {setAuthor(e.target.value)}}/>
                 </div>) }
 
                 { section ===1 && (
@@ -73,7 +73,19 @@ const CreateForm = () => {
                         <label  className="block text-900 font-medium mb-2">Function creator contract address</label>
                         <InputText placeholder='Creator Address' className="w-full mb-3" onChange={(e)=> {setCreatoAddress(e.target.value)}}/>
 
-                        <label  className="block text-900 font-medium mb-2">Is the function to be payed for?</label>
+                        <label  className="block text-900 font-medium mb-2">select a chain</label>
+                        <div className="">
+                            <Checkbox inputId="ingredient2" name="pizza" value="Mushroom" onChange={e => setIsPaid(e.checked)} checked={isPaid} />
+                            <label htmlFor="ingredient2" className="ml-2">{isPaid ? paid='yes': paid='no'}</label>
+                        </div>
+
+                        <div className="h-1rem"></div>
+                        <div className="">
+                            <Checkbox inputId="ingredient2" name="pizza" value="Mushroom" onChange={e => setIsPaid(e.checked)} checked={isPaid} />
+                            <label htmlFor="ingredient2" className="ml-2">{isPaid ? paid='yes': paid='no'}</label>
+                        </div>
+
+                        <div className="h-1rem"></div>
                         <div className="">
                             <Checkbox inputId="ingredient2" name="pizza" value="Mushroom" onChange={e => setIsPaid(e.checked)} checked={isPaid} />
                             <label htmlFor="ingredient2" className="ml-2">{isPaid ? paid='yes': paid='no'}</label>
@@ -81,11 +93,9 @@ const CreateForm = () => {
 
                         <div className="h-1rem"></div>
                         <label className="block text-900 font-medium mb-2">is function Audited?</label>
-                        <div className="flex align-items-center">
-                            
+                        <div className="flex align-items-center">  
                             <Checkbox inputId="ingredient2" name="pizza" value="Mushroom" onChange={e => setChecked(e.checked)} checked={checked} />
-                            <label htmlFor="ingredient2" className="ml-2">{checked ? yes='yes': yes='no'}</label>
-                            
+                            <label htmlFor="ingredient2" className="ml-2">{isPaid ? paid='yes': paid='no'}</label>
                         </div>
                     </div>
                 )}
