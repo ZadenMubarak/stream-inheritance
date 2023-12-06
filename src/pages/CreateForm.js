@@ -32,8 +32,6 @@ const CreateForm = () => {
     // chainlikn eth polygon bnb arbitrium avalanchel optimism
     const toast = useRef(null);
 
-    let yes = '';
-    let paid = '';
     const submissionButtonEventHandling = () => {
         if (!title || !author || !functionContractAddress || !longDescription || !usage || !creatorAddress) {
             toast.current.show({severity:'error', summary: 'Incomplete', detail:' Please fill in all the prompts', life: 3000});
@@ -87,7 +85,7 @@ const CreateForm = () => {
                         <label  className="block text-900 font-medium mb-2">select a chain</label>
                         {/* chainlink */}
                         <div className="">
-                            <Checkbox inputId="ingredient2" name="pizza" value="Mushroom" onChange={e => setIsPaid(e.checked)} checked={isPaid} />
+                            <Checkbox inputId="ingredient2" name="pizza" value="Mushroom" onChange={e => setChinlink(e.checked)} checked={chainlink} />
                             <label htmlFor="ingredient2" className="ml-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="20" height="20">
                                     <image xlinkHref="https://cryptologos.cc/logos/chainlink-link-logo.svg?v=029" width="64" height="64" />
@@ -99,7 +97,7 @@ const CreateForm = () => {
                         <div className="h-1rem"></div>
                         {/* ethereum */}
                         <div className="">
-                            <Checkbox inputId="ingredient2" name="pizza" value="Mushroom" onChange={e => setIsPaid(e.checked)} checked={isPaid} />
+                            <Checkbox inputId="ingredient2" name="pizza" value="Mushroom" onChange={e => setEthereum(e.checked)} checked={ethereum} />
                             <label htmlFor="ingredient2" className="ml-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="20" height="20">
                                     <image xlinkHref="https://cryptologos.cc/logos/ethereum-eth-logo.svg?v=029" width="64" height="64" />
@@ -111,7 +109,7 @@ const CreateForm = () => {
                         <div className="h-1rem"></div>
                         {/* polygon */}
                         <div className="">
-                            <Checkbox inputId="ingredient2" name="pizza" value="Mushroom" onChange={e => setIsPaid(e.checked)} checked={isPaid} />
+                            <Checkbox inputId="ingredient2" name="pizza" value="Mushroom" onChange={e => setPolygon(e.checked)} checked={polygon} />
                             <label htmlFor="ingredient2" className="ml-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="20" height="20">
                                     <image xlinkHref="https://cryptologos.cc/logos/polygon-matic-logo.svg?v=029" width="64" height="64" />
@@ -123,7 +121,7 @@ const CreateForm = () => {
                         <div className="h-1rem"></div>
                         {/* bnb */}
                         <div className="flex align-items-center">  
-                            <Checkbox inputId="ingredient2" name="pizza" value="Mushroom" onChange={e => setChecked(e.checked)} checked={checked} />
+                            <Checkbox inputId="ingredient2" name="pizza" value="Mushroom" onChange={e => setBNB(e.checked)} checked={bnb} />
                             <label htmlFor="ingredient2" className="ml-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="20" height="20">
                                     <image xlinkHref="https://cryptologos.cc/logos/bnb-bnb-logo.svg?v=029" width="64" height="64" />
@@ -135,7 +133,7 @@ const CreateForm = () => {
                         <div className="h-1rem"></div>
                         {/*arbitrium */}
                         <div className="flex align-items-center">  
-                            <Checkbox inputId="ingredient2" name="pizza" value="Mushroom" onChange={e => setChecked(e.checked)} checked={checked} />
+                            <Checkbox inputId="ingredient2" name="pizza" value="Mushroom" onChange={e => setArbitrium(e.checked)} checked={arbutrium} />
                             <label htmlFor="ingredient2" className="ml-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="20" height="20">
                                     <image xlinkHref="https://cryptologos.cc/logos/arbitrum-arb-logo.svg?v=029" width="64" height="64" />
@@ -147,7 +145,7 @@ const CreateForm = () => {
                         <div className="h-1rem"></div>
                         {/*avalanche*/}
                         <div className="flex align-items-center">  
-                            <Checkbox inputId="ingredient2" name="pizza" value="Mushroom" onChange={e => setChecked(e.checked)} checked={checked} />
+                            <Checkbox inputId="ingredient2" name="pizza" value="Mushroom" onChange={e => setAvalanche(e.checked)} checked={avalanche} />
                             <label htmlFor="ingredient2" className="ml-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="20" height="20">
                                     <image xlinkHref="https://cryptologos.cc/logos/avalanche-avax-logo.svg?v=029" width="64" height="64" />
@@ -200,9 +198,7 @@ const CreateForm = () => {
                         </div>
                         
                     )}
-  
-                
-                    
+      
             </Card>
         </div>
     </div>
