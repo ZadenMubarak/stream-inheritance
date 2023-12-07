@@ -8,6 +8,7 @@ export class AppStateService{
             return AppStateService.instance;
         }
         AppStateService.instance = this;
+        console.log("instance created");
 
         this.walletAddress = '';
         this.connected = false;
@@ -15,6 +16,12 @@ export class AppStateService{
         const db = new Polybase({
             defaultNamespace: "pk/0xbd242ce427525d219c617b9856f0052b52334321d47d1793a7653cab5b2dac45792735a33e4b2789cbf8063555816d8a37226f8b393645c78244c175a010fbed/stream-inherritance",
         });
+        const auth = new Auth()
+        db.signer(async (data) => {
+            return {
+                h: 'eth-personal-sign',
+                sig: await auth.ethPersonalSign(data)
+        }});
 
         this.polyBaseResponse = [];
         this.nextPolybaseRecordID = null;
@@ -24,26 +31,25 @@ export class AppStateService{
 
     
     generatePolybaseID = () => {
-        this.nextPolybaseRecordID = this.polybaseResponse.length + 1;
+        this.nextPolybaseRecordID = this.polyBaseResponse.length + 1;
         return this.nextPolybaseRecordID.toString();
     }
 
-    async getItemsFromRecord (address) {
-        // this.getUseAddress();
-        await this.collectionReference.where("walletAddress", "==", address).get().then((data)=>{
+    async getItemsFromRecord () {
+        await this.collectionReference.get().then((data) =>{
             let array = data.data;
-            let temp = []  
+            let temp = [];
+
             array.forEach(element => {
-                temp.push(element.data)
+                temp.push(element)
             });
-            console.log(temp[0].author);
-            console.log("lenth: ", temp.length);
-            this.polybaseResponse = temp;
-            // console.log('polybase response: ', this.polybaseResponse);
+
+            this.polyBaseResponse = temp;
             return temp;
         }).catch((error)=>{
-            console.log(error)
-        });
+            console.log(error);
+        })
+
     }
 
     async createProject(projectObject){

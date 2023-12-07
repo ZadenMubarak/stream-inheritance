@@ -11,11 +11,17 @@ import { Dialog } from 'primereact/dialog';
 import { InputText } from 'primereact/inputtext';
 
 import { Toast } from 'primereact/toast';
+import Blockies from 'react-blockies';
 
-import Blockies from 'react-blockies'
+import { AppStateService } from '../AppstateService/AppStateService';
 
 const ManagePage = () => {
-    
+
+    const service = new AppStateService();
+    service.getItemsFromRecord()
+    const mangeArray = service.polyBaseResponse;
+
+    console.log('manage: ',service.polyBaseResponse);
   return (
     <div>
         <div className="bg-primary-800 text-gray-100 p-3 flex justify-content-between lg:justify-content-center align-items-center flex-wrap " style={{height:"12rem", background:`url(https://media.licdn.com/dms/image/D4E12AQGc2LEesn-HrQ/article-cover_image-shrink_720_1280/0/1681832199466?e=2147483647&v=beta&t=bJuX740RPF6GGjAshQAtlzVzKjOSMUmn5_ghvTOS0kQ)`}}>
@@ -32,7 +38,7 @@ const ManagePage = () => {
                 <ul className="list-none p-0 m-0 flex-grow-1">
                 <li className="flex align-items-center mb-3">
                         <i className="pi pi-eye text-primary-500 mr-2"></i>
-                        <span>2 developes have subscribed</span>
+                        <span>{mangeArray[0]}</span>
                     </li>
                     <Divider />
                     
