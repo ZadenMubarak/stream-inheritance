@@ -7,7 +7,6 @@ import { InputTextarea } from 'primereact/inputtextarea';
 import { Button } from 'primereact/button';
 import { Editor } from 'primereact/editor';
 import { Toast } from 'primereact/toast';
-import { Dropdown } from 'primereact/dropdown';
 import { Checkbox } from "primereact/checkbox";
 
 import { AppStateService } from "../AppstateService/AppStateService";
@@ -170,7 +169,7 @@ const CreateForm = () => {
                         <div className="h-1rem"></div>
                         {/*optimism*/}
                         <div className="flex align-items-center">  
-                            <Checkbox inputId="ingredient2" name="pizza" value="Mushroom" onChange={e => setChecked(e.checked)} checked={checked} />
+                            <Checkbox inputId="ingredient2" name="pizza" value="Mushroom" onChange={e => setOptimism(e.checked)} checked={optimism} />
                             <label htmlFor="ingredient2" className="ml-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="20" height="20">
                                     <image xlinkHref="https://cryptologos.cc/logos/optimism-ethereum-op-logo.svg?v=029" width="64" height="64" />
