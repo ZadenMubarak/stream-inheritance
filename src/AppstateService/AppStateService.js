@@ -35,22 +35,29 @@ export class AppStateService{
         return this.nextPolybaseRecordID.toString();
     }
 
-    async getItemsFromRecord () {
-        await this.collectionReference.get().then((data) =>{
-            let array = data.data;
-            let temp = [];
-
-            array.forEach(element => {
-                temp.push(element)
+    getItemsFromRecord() {
+        return new Promise((resolve, reject) => {
+          this.collectionReference
+            .get()
+            .then((data) => {
+              let array = data.data;
+              let temp = [];
+    
+              array.forEach((element) => {
+                temp.push(element.data);
+              });
+    
+              this.polyBaseResponse = temp;
+              console.log("response from singleton: ", this.polyBaseResponse);
+              resolve(temp);
+            })
+            .catch((error) => {
+              console.log(error);
+              reject(error);
             });
-
-            this.polyBaseResponse = temp;
-            return temp;
-        }).catch((error)=>{
-            console.log(error);
-        })
-
-    }
+        });
+      }
+    
 
     async createProject(projectObject){
         // let id = this.generatePolybaseID()
