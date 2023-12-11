@@ -54,15 +54,23 @@ const ManagePage = () => {
               <Card title="Beneficiary " className="shadow-6 w-20rem" style={{ height: "420px" }}>
                 {/* Render content based on manageArray */}
                 <ul className="list-none p-0 m-0 flex-grow-1">
-                  <li className="flex align-items-center mb-3">
-                    <i className="pi pi-eye text-primary-500 mr-2"></i>
-                    <span>{manageArray[0].benficiaryName}</span>
-                  </li>
-                  <Divider />
-                  <li className="flex align-items-center mb-3">
-                    <i className="pi pi-check-circle text-green-500 mr-2"></i>
-                    <span>name</span>
-                  </li>
+                  {manageArray.map((item, index) => (
+                    <React.Fragment key={index}>
+                      <li className="flex align-items-center mb-3">
+                        <i className="pi pi-eye text-primary-500 mr-2"></i>
+                        <span>{item.streamCreatorName}</span>
+                      </li>
+                      <Divider />
+                      <span>Beneficiary names</span>
+                      <li className="flex align-items-center mb-3">
+                        <i className="pi pi-check-circle text-green-500 mr-2"></i>
+                        <span>{item.benficiaryName}</span>
+                      </li>
+                      
+                    </React.Fragment>
+                  ))}
+
+
                 </ul>
               </Card>
               <Card className='shadow-5' style={{width:'70%'}}>
@@ -71,10 +79,9 @@ const ManagePage = () => {
             <div className="card">
             <TabView>
                 <TabPanel header="Details">
-                    <p className="m-0">
-                        long deets
-                    </p>
-                    <span>Rating  </span>  :<Rating value={5} readOnly cancel={false} />
+                    <span className="m-0">
+                        {manageArray[0].beneficiaryDetails}
+                    </span>
                 </TabPanel>
                 <TabPanel header="transaction">
                     {/* <Editor value={usage} headerTemplate={header} readOnly style={{ height: '220px' }}/>
