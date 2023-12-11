@@ -36,6 +36,7 @@ const Navbar = () => {
             </a>
             <Button label='create' className="mr-2" text onClick={() => navigate('/create-form')}/>
             <Button label='manage' className="mr-2" text onClick={() => navigate('/manage')}/>
+            <Button label='beneficiary page' className="mr-2" text onClick={() => navigate('/beneficiary-management')}/>
             <Button label={buttonText} className="mr-2" icon='pi pi-wallet' onClick={connect}/>
         </React.Fragment>
     );

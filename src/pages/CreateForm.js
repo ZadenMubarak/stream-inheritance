@@ -49,7 +49,7 @@ const CreateForm = () => {
                     beneficiaryDetails: beneficiaryDetails,
                     numberOfMonthsToStream: numberOfMonthsToStream,
                     walletAddress: service.walletAddress,
-                    beneficiaryAddress : beneficiaryAddress,
+                    beneficiaryAddress : beneficiaryAddress.toLowerCase(),
                 }
 
                 service.createProject(db_values);

@@ -38,11 +38,10 @@ class AppStateService{
     }
 
     getBeneficiaryFromRecord(address) {
-      
       // const address = localStorage.getItem("userWalletAddress");
       return new Promise((resolve, reject) => {
         this.collectionReference
-          .where("walletAddress", "==", address)
+          .where("beneficiaryAddress", "==", address)
           .get()
           .then((data) => {
             let array = data.data;

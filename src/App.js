@@ -10,6 +10,7 @@ import Navbar from './components/NavbarComponent';
 import HomePage from './pages/HomePage';
 import ManagePage from './pages/ManagePage';
 import CreateForm from './pages/CreateForm';
+import BeneficiaryManagement from './pages/BeneficiaryManagement';
 
 import { appStateService } from './AppstateService/AppStateService';
 
@@ -27,6 +28,7 @@ function App() {
           <Route path='/' element={<HomePage/>} />
           <Route path='/manage' element={<ManagePage/>} />
           <Route path='/create-form' element={<CreateForm/>}/>
+          <Route path='/beneficiary-management' element={<BeneficiaryManagement/>} />
         </Routes>
     </BrowserRouter>
     </div>
