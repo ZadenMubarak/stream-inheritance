@@ -26,7 +26,7 @@ const ManagePage = () => {
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const data = await service.getItemsFromRecord('0xA6232F51b52522148BD4aC4d3E99ca4848CE3f56');
+            const data = await service.getItemsFromRecord(service.walletAddress);
             setManageArray(data);
             console.log('from manage: ', data[0]);
             console.log('address: ', address);

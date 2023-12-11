@@ -16,6 +16,7 @@ const CreateForm = () => {
     const [streamCreatorName, setStreamCreatorName] = useState('');
     const [benficiaryName, setBenficiaryName] = useState('');
     const [walletAddress, seWalletAddress] = useState('');
+    const [beneficiaryAddress, setBeneficiaryAddress] = useState('');
     const [numberOfMonthsToStream, setNumberOfMonthsToStream] = useState('');
     const [beneficiaryDetails, setBeneficiaryDetails] = useState('');
     const [usage, setUsage] = useState('');
@@ -31,21 +32,28 @@ const CreateForm = () => {
 
 
     const submissionButtonEventHandling = () => {
-        if (!streamCreatorName || !benficiaryName || !walletAddress || !beneficiaryDetails || !usage || !numberOfMonthsToStream) {
+        if (!streamCreatorName || !benficiaryName || !walletAddress || !beneficiaryDetails || !numberOfMonthsToStream || !beneficiaryAddress) {
             toast.current.show({severity:'error', summary: 'Incomplete', detail:' Please fill in all the prompts', life: 3000});
 
         }else {
-            toast.current.show({severity:'success', summary: 'Success', detail:'Form successfully submitted', life: 3000});
-            const db_values = {
-               
-                streamCreatorName: streamCreatorName,
-                benficiaryName: benficiaryName,
-                beneficiaryDetails: beneficiaryDetails,
-                numberOfMonthsToStream: numberOfMonthsToStream,
-                walletAddress: service.walletAddress,
-            }
 
-            service.createProject(db_values);
+            if (service.connected === false){
+                toast.current.show({severity:'warn', summary: 'Not allowed', detail:'Connect your wallet to submit', life: 3000});
+            }else{
+
+                toast.current.show({severity:'success', summary: 'Success', detail:'Form successfully submitted', life: 3000});
+                const db_values = {
+                
+                    streamCreatorName: streamCreatorName,
+                    benficiaryName: benficiaryName,
+                    beneficiaryDetails: beneficiaryDetails,
+                    numberOfMonthsToStream: numberOfMonthsToStream,
+                    walletAddress: service.walletAddress,
+                    beneficiaryAddress : beneficiaryAddress,
+                }
+
+                service.createProject(db_values);
+            }
  
         }
     }
@@ -88,7 +96,7 @@ const CreateForm = () => {
                         <InputText placeholder='Enter address' className="w-full mb-3" onChange={(e)=> {seWalletAddress(e.target.value)}}/>
 
                         <label className="block text-900 font-medium mb-2">beneficiary wallet address</label>
-                        <InputText placeholder='Enter address' className="w-full mb-3" onChange={(e)=> {seWalletAddress(e.target.value)}}/>
+                        <InputText placeholder='Enter address' className="w-full mb-3" onChange={(e)=> {setBeneficiaryAddress(e.target.value)}}/>
 
                         <label  className="block text-900 font-medium mb-2">Release funds aftoer how many months</label>
                         <InputText keyfilter="int" placeholder='Release period' className="w-full mb-3" onChange={(e)=> {setNumberOfMonthsToStream(e.target.value)}}/>
@@ -138,8 +146,8 @@ const CreateForm = () => {
 
                 { section === 2 && (
                     <div>
-                        <label className="block text-900 font-medium mb-2">Usage</label>
-                        <Editor placeholder="Put in a little code snippet to show the usage" value={usage} onTextChange={(e) => setUsage(e.textValue)} headerTemplate={header} style={{ height: '320px' }} />
+                        <label className="block text-900 font-medium mb-2">Go back</label>
+                        {/* <Editor placeholder="Put in a little code snippet to show the usage" value={usage} onTextChange={(e) => setUsage(e.textValue)} headerTemplate={header} style={{ height: '320px' }} /> */}
                         <Divider/>
 
                         <Button label="Submit" severity="primary" className="w-full" onClick={submissionButtonEventHandling} />

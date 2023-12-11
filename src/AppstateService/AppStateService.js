@@ -25,6 +25,7 @@ class AppStateService{
 
         this.polyBaseResponse = [];
         this.fullResponse = []
+        this.beneficiaryResponse = [];
         this.nextPolybaseRecordID = null;
         this.collectionReference = db.collection('StreamInherritance');
 
@@ -36,7 +37,34 @@ class AppStateService{
         return this.nextPolybaseRecordID.toString();
     }
 
+    getBeneficiaryFromRecord(address) {
+      
+      // const address = localStorage.getItem("userWalletAddress");
+      return new Promise((resolve, reject) => {
+        this.collectionReference
+          .where("walletAddress", "==", address)
+          .get()
+          .then((data) => {
+            let array = data.data;
+            let temp = [];
+  
+            array.forEach((element) => {
+              temp.push(element.data);
+            });
+  
+            this.beneficiaryResponse = temp;
+            console.log("beneficiary ", this.beneficiaryResponse);
+            resolve(temp);
+          })
+          .catch((error) => {
+            console.log(error);
+            reject(error);
+          });
+      });
+    }
+
     getItemsFromRecord(address) {
+        // this.collectionReference.record("1").call("del");
         // const address = localStorage.getItem("userWalletAddress");
         return new Promise((resolve, reject) => {
           this.collectionReference
@@ -89,12 +117,13 @@ class AppStateService{
         let id = this.generatePolybaseID()
         console.log('log id',this.fullResponse);
         await this.collectionReference.create([
-            '2',
+            id,
             projectObject.streamCreatorName,
             projectObject.benficiaryName,
             projectObject.beneficiaryDetails,
             projectObject.numberOfMonthsToStream,
             projectObject.walletAddress,
+            projectObject.beneficiaryAddress,
         ])
     }
 
