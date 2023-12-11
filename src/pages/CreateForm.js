@@ -9,7 +9,7 @@ import { Editor } from 'primereact/editor';
 import { Toast } from 'primereact/toast';
 import { Checkbox } from "primereact/checkbox";
 
-import { AppStateService } from "../AppstateService/AppStateService";
+import { appStateService } from "../AppstateService/AppStateService";
 
 const CreateForm = () => {
     const [section, setSection] = useState(0);
@@ -19,20 +19,16 @@ const CreateForm = () => {
     const [numberOfMonthsToStream, setNumberOfMonthsToStream] = useState('');
     const [beneficiaryDetails, setBeneficiaryDetails] = useState('');
     const [usage, setUsage] = useState('');
-    const [checked, setChecked] = useState(false);
-    const [isPaid, setIsPaid] = useState(false);
-    const [chainlink, setChinlink] = useState(false);
     const [ethereum, setEthereum] = useState(false);
     const [polygon, setPolygon] = useState(false);
-    const [bnb, setBNB] = useState(false);
-    const [arbutrium, setArbitrium] = useState(false);
     const [avalanche, setAvalanche] = useState(false);
-    const [optimism, setOptimism] = useState(false);
     // chainlikn eth polygon bnb arbitrium avalanchel optimism
     const toast = useRef(null);
-    const service = new AppStateService();
+    const service = appStateService;
+    console.log('wallet address',service.walletAddress);
 
     const IdArray = service.polyBaseResponse;
+
 
     const submissionButtonEventHandling = () => {
         if (!streamCreatorName || !benficiaryName || !walletAddress || !beneficiaryDetails || !usage || !numberOfMonthsToStream) {
@@ -41,12 +37,12 @@ const CreateForm = () => {
         }else {
             toast.current.show({severity:'success', summary: 'Success', detail:'Form successfully submitted', life: 3000});
             const db_values = {
-                id: IdArray.length + 1,
+               
                 streamCreatorName: streamCreatorName,
                 benficiaryName: benficiaryName,
                 beneficiaryDetails: beneficiaryDetails,
                 numberOfMonthsToStream: numberOfMonthsToStream,
-                walletAddress: walletAddress,
+                walletAddress: service.walletAddress,
             }
 
             service.createProject(db_values);
@@ -91,20 +87,13 @@ const CreateForm = () => {
                         <label className="block text-900 font-medium mb-2">wallet address</label>
                         <InputText placeholder='Enter address' className="w-full mb-3" onChange={(e)=> {seWalletAddress(e.target.value)}}/>
 
+                        <label className="block text-900 font-medium mb-2">beneficiary wallet address</label>
+                        <InputText placeholder='Enter address' className="w-full mb-3" onChange={(e)=> {seWalletAddress(e.target.value)}}/>
+
                         <label  className="block text-900 font-medium mb-2">Release funds aftoer how many months</label>
                         <InputText keyfilter="int" placeholder='Release period' className="w-full mb-3" onChange={(e)=> {setNumberOfMonthsToStream(e.target.value)}}/>
 
                         <label  className="block text-900 font-medium mb-2">select a chain</label>
-                        {/* chainlink */}
-                        <div className="">
-                            <Checkbox inputId="ingredient2" name="pizza" value="Mushroom" onChange={e => setChinlink(e.checked)} checked={chainlink} />
-                            <label htmlFor="ingredient2" className="ml-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="20" height="20">
-                                    <image xlinkHref="https://cryptologos.cc/logos/chainlink-link-logo.svg?v=029" width="64" height="64" />
-                                </svg>
-                                chainlink
-                            </label>
-                        </div>
 
                         <div className="h-1rem"></div>
                         {/* ethereum */}
@@ -130,29 +119,7 @@ const CreateForm = () => {
                             </label>
                         </div>
 
-                        <div className="h-1rem"></div>
-                        {/* bnb */}
-                        <div className="flex align-items-center">  
-                            <Checkbox inputId="ingredient2" name="pizza" value="Mushroom" onChange={e => setBNB(e.checked)} checked={bnb} />
-                            <label htmlFor="ingredient2" className="ml-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="20" height="20">
-                                    <image xlinkHref="https://cryptologos.cc/logos/bnb-bnb-logo.svg?v=029" width="64" height="64" />
-                                </svg>
-                                BNB
-                            </label>
-                        </div>
 
-                        <div className="h-1rem"></div>
-                        {/*arbitrium */}
-                        <div className="flex align-items-center">  
-                            <Checkbox inputId="ingredient2" name="pizza" value="Mushroom" onChange={e => setArbitrium(e.checked)} checked={arbutrium} />
-                            <label htmlFor="ingredient2" className="ml-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="20" height="20">
-                                    <image xlinkHref="https://cryptologos.cc/logos/arbitrum-arb-logo.svg?v=029" width="64" height="64" />
-                                </svg>
-                                arbitrium
-                            </label>
-                        </div>
 
                         <div className="h-1rem"></div>
                         {/*avalanche*/}
@@ -163,18 +130,6 @@ const CreateForm = () => {
                                     <image xlinkHref="https://cryptologos.cc/logos/avalanche-avax-logo.svg?v=029" width="64" height="64" />
                                 </svg>
                                 avalnche
-                            </label>
-                        </div>
-
-                        <div className="h-1rem"></div>
-                        {/*optimism*/}
-                        <div className="flex align-items-center">  
-                            <Checkbox inputId="ingredient2" name="pizza" value="Mushroom" onChange={e => setOptimism(e.checked)} checked={optimism} />
-                            <label htmlFor="ingredient2" className="ml-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="20" height="20">
-                                    <image xlinkHref="https://cryptologos.cc/logos/optimism-ethereum-op-logo.svg?v=029" width="64" height="64" />
-                                </svg>
-                                optimism
                             </label>
                         </div>
 

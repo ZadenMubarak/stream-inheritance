@@ -7,11 +7,11 @@ import logo from './Assets/logo.svg'
 import { Toolbar } from 'primereact/toolbar';
 import { Button } from 'primereact/button';
 
-import { AppStateService } from '../AppstateService/AppStateService';
+import { appStateService } from '../AppstateService/AppStateService';
 
 const Navbar = () => {
     const navigate = useNavigate();
-    let service = new AppStateService();
+    let service = appStateService;
     const [buttonText, setButtonText] = useState("Connect Wallet");
 
     const connect = () => {

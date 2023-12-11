@@ -11,12 +11,12 @@ import HomePage from './pages/HomePage';
 import ManagePage from './pages/ManagePage';
 import CreateForm from './pages/CreateForm';
 
-import { AppStateService } from './AppstateService/AppStateService';
+import { appStateService } from './AppstateService/AppStateService';
 
 function App() {
 
-  let service = new AppStateService();
-  service.getItemsFromRecord();
+  let service = appStateService;
+  console.log(service.walletAddress);
 
   return (
     <div className="App">

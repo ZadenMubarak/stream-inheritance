@@ -1,7 +1,7 @@
 import { Polybase } from "@polybase/client";
 import { Auth } from "@polybase/auth";
 
-export class AppStateService{
+class AppStateService{
     constructor() {
         if (typeof AppStateService === 'object'){
             console.log("instance returned");
@@ -24,6 +24,7 @@ export class AppStateService{
         }});
 
         this.polyBaseResponse = [];
+        this.fullResponse = []
         this.nextPolybaseRecordID = null;
         this.collectionReference = db.collection('StreamInherritance');
 
@@ -35,9 +36,11 @@ export class AppStateService{
         return this.nextPolybaseRecordID.toString();
     }
 
-    getItemsFromRecord() {
+    getItemsFromRecord(address) {
+        // const address = localStorage.getItem("userWalletAddress");
         return new Promise((resolve, reject) => {
           this.collectionReference
+            .where("walletAddress", "==", address)
             .get()
             .then((data) => {
               let array = data.data;
@@ -57,12 +60,36 @@ export class AppStateService{
             });
         });
       }
+
+      getFullData(){
+        return new Promise((resolve, reject) => {
+            this.collectionReference
+              .get()
+              .then((data) => {
+                let array = data.data;
+                let temp = [];
+      
+                array.forEach((element) => {
+                  temp.push(element.data);
+                });
+      
+                this.fullResponse = temp;
+                console.log("response from singleton: ", this.polyBaseResponse);
+                resolve(temp);
+              })
+              .catch((error) => {
+                console.log(error);
+                reject(error);
+              });
+          });
+      }
     
 
     async createProject(projectObject){
-        // let id = this.generatePolybaseID()
+        let id = this.generatePolybaseID()
+        console.log('log id',this.fullResponse);
         await this.collectionReference.create([
-            projectObject.id,
+            '2',
             projectObject.streamCreatorName,
             projectObject.benficiaryName,
             projectObject.beneficiaryDetails,
@@ -79,6 +106,7 @@ export class AppStateService{
                     this.walletAddress = data[0];
                     this.connected = true
                     console.log('wallet address from singleton: ', this.walletAddress);
+                    localStorage.setItem("userWalletAddress", this.walletAddress);
                 }).catch((error) => {
                     console.log('error in singleton : ', error);
                 })   
@@ -89,3 +117,7 @@ export class AppStateService{
       }
  
 }
+
+const appStateService = new AppStateService();
+
+export { appStateService };

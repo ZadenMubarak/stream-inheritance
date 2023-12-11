@@ -14,25 +14,22 @@ import { ProgressBar } from 'primereact/progressbar';
 import { Toast } from 'primereact/toast';
 import Blockies from 'react-blockies';
 
-import { AppStateService } from '../AppstateService/AppStateService';
+import { appStateService } from '../AppstateService/AppStateService';
 
 const ManagePage = () => {
 
-    // const service = new AppStateService();
-    // service.getItemsFromRecord()
-    // const mangeArray = service.polyBaseResponse;
-
-    // console.log('from manage: ',mangeArray[0]);
-
-    const [manageArray, setManageArray] = useState([]);
-    const service = new AppStateService();
+  const [manageArray, setManageArray] = useState([]);
+    const service = appStateService;
+    const address = localStorage.getItem("userWalletAddress");
+    console.log('address: ', address);
 
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const data = await service.getItemsFromRecord();
+            const data = await service.getItemsFromRecord('0xA6232F51b52522148BD4aC4d3E99ca4848CE3f56');
             setManageArray(data);
             console.log('from manage: ', data[0]);
+            console.log('address: ', address);
           } catch (error) {
             console.error('Error fetching data:', error);
           }
@@ -103,6 +100,7 @@ const ManagePage = () => {
           ) : (
             // Render a loading state or a message indicating that data is being fetched
             <div>
+              
                 Loading...
                 <ProgressBar mode="indeterminate" style={{ height: '6px' }}></ProgressBar>
 
