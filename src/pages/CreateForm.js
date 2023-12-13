@@ -23,12 +23,29 @@ const CreateForm = () => {
     const [ethereum, setEthereum] = useState(false);
     const [polygon, setPolygon] = useState(false);
     const [avalanche, setAvalanche] = useState(false);
+    const [IdArray, setIdArray] = useState([]);
     // chainlikn eth polygon bnb arbitrium avalanchel optimism
     const toast = useRef(null);
     const service = appStateService;
     console.log('wallet address',service.walletAddress);
+    // const IdArray = [];
 
-    const IdArray = service.polyBaseResponse;
+    service.getItemsFromRecord(service.walletAddress)
+    .then((data) => {
+      console.log('Polybase response:', data);
+      let temp = [];
+      data.forEach(element => {
+        temp.push(element)
+      });
+    //   IdArray = temp;
+      setIdArray(temp)
+    })
+    .catch((error) => {
+      console.error('Error fetching data:', error);
+    });
+
+    
+    console.log("ply resp: ", IdArray);
 
 
     const submissionButtonEventHandling = () => {
@@ -43,7 +60,7 @@ const CreateForm = () => {
 
                 toast.current.show({severity:'success', summary: 'Success', detail:'Form successfully submitted', life: 3000});
                 const db_values = {
-                
+                    id:IdArray.length + 1,                
                     streamCreatorName: streamCreatorName,
                     benficiaryName: benficiaryName,
                     beneficiaryDetails: beneficiaryDetails,

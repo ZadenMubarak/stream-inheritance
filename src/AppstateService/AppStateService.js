@@ -140,8 +140,9 @@ class AppStateService{
 
     
     generatePolybaseID = () => {
-        this.nextPolybaseRecordID = this.polyBaseResponse.length + 1;
-        return this.nextPolybaseRecordID.toString();
+      
+      this.nextPolybaseRecordID = this.polyBaseResponse.length + 1;
+      return this.nextPolybaseRecordID.toString();
     }
 
     getBeneficiaryFromRecord(address) {
@@ -169,31 +170,59 @@ class AppStateService{
       });
     }
 
+    // getItemsFromRecord(address) {
+    //     // this.collectionReference.record("1").call("del");
+    //     // const address = localStorage.getItem("userWalletAddress");
+    //     return new Promise((resolve, reject) => {
+    //       this.collectionReference
+    //         .where("walletAddress", "==", address)
+    //         .get()
+    //         .then((data) => {
+    //           let array = data.data;
+    //           let temp = [];
+    
+    //           array.forEach((element) => {
+    //             temp.push(element.data);
+    //           });
+    
+    //           this.polyBaseResponse = temp;
+    //           console.log("response from singleton: ", this.polyBaseResponse);
+    //           resolve(temp);
+    //         })
+    //         .catch((error) => {
+    //           console.log(error);
+    //           reject(error);
+    //         });
+    //     });
+    //   }
+    // ...
+
     getItemsFromRecord(address) {
-        // this.collectionReference.record("1").call("del");
-        // const address = localStorage.getItem("userWalletAddress");
-        return new Promise((resolve, reject) => {
-          this.collectionReference
-            .where("walletAddress", "==", address)
-            .get()
-            .then((data) => {
-              let array = data.data;
-              let temp = [];
-    
-              array.forEach((element) => {
-                temp.push(element.data);
-              });
-    
-              this.polyBaseResponse = temp;
-              console.log("response from singleton: ", this.polyBaseResponse);
-              resolve(temp);
-            })
-            .catch((error) => {
-              console.log(error);
-              reject(error);
+      return new Promise((resolve, reject) => {
+        this.collectionReference
+          .where("walletAddress", "==", address)
+          .get()
+          .then((data) => {
+            let array = data.data;
+            let temp = [];
+
+            array.forEach((element) => {
+              temp.push(element.data);
             });
-        });
-      }
+
+            this.polyBaseResponse = temp;
+            console.log("response from singleton: ", this.polyBaseResponse);
+            resolve(temp);
+          })
+          .catch((error) => {
+            console.log(error);
+            reject(error);
+          });
+      });
+    }
+
+// ...
+
 
       getFullData(){
         return new Promise((resolve, reject) => {
@@ -223,7 +252,7 @@ class AppStateService{
         let id = this.generatePolybaseID()
         console.log('log id',this.fullResponse);
         await this.collectionReference.create([
-            id,
+            projectObject.id,
             projectObject.streamCreatorName,
             projectObject.benficiaryName,
             projectObject.beneficiaryDetails,
@@ -364,6 +393,100 @@ class AppStateService{
     }
 
     async createStreamVault(_beneficiaryAddress) {
+
+      const contractAbi = [
+        [
+          {
+            "inputs": [
+              {
+                "internalType": "address",
+                "name": "vaultCreator",
+                "type": "address"
+              }
+            ],
+            "name": "callClaim",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+          },
+          {
+            "inputs": [
+              {
+                "internalType": "uint256",
+                "name": "_balance",
+                "type": "uint256"
+              }
+            ],
+            "name": "closeVault",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+          },
+          {
+            "inputs": [
+              {
+                "internalType": "address payable",
+                "name": "_beneficiary",
+                "type": "address"
+              },
+              {
+                "internalType": "string",
+                "name": "_meta",
+                "type": "string"
+              }
+            ],
+            "name": "createStreamVault",
+            "outputs": [],
+            "stateMutability": "nonpayable",
+            "type": "function"
+          },
+          {
+            "inputs": [],
+            "stateMutability": "payable",
+            "type": "constructor"
+          },
+          {
+            "stateMutability": "payable",
+            "type": "receive"
+          },
+          {
+            "inputs": [
+              {
+                "internalType": "address",
+                "name": "_creator",
+                "type": "address"
+              }
+            ],
+            "name": "streamOf",
+            "outputs": [
+              {
+                "components": [
+                  {
+                    "internalType": "address",
+                    "name": "vaultAddress",
+                    "type": "address"
+                  },
+                  {
+                    "internalType": "address",
+                    "name": "beneficiaryAddress",
+                    "type": "address"
+                  },
+                  {
+                    "internalType": "string",
+                    "name": "beneficiaryMetaData",
+                    "type": "string"
+                  }
+                ],
+                "internalType": "struct StreamInherit.Vault",
+                "name": "_value",
+                "type": "tuple"
+              }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+          }
+        ]
+      ];
 
       const id = this.generatePolybaseID();
       
