@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Editor } from 'primereact/editor';
 import { Rating } from "primereact/rating";
@@ -7,7 +7,7 @@ import { Card } from 'primereact/card';
 import { Divider } from 'primereact/divider';
 import { Button } from 'primereact/button';
 import { Dialog } from 'primereact/dialog';
-import { InputText } from 'primereact/inputtext';
+import { Accordion, AccordionTab } from 'primereact/accordion';
 import { ProgressBar } from 'primereact/progressbar';
 
 import { Toast } from 'primereact/toast';
@@ -21,6 +21,7 @@ const BeneficiaryManagement = () => {
     const [manageArray, setManageArray] = useState([]);
     const service = appStateService;
     const address = localStorage.getItem("userWalletAddress");
+    const toast = useRef(null);
     console.log('address: ', address);
 
     useEffect(() => {
@@ -39,6 +40,7 @@ const BeneficiaryManagement = () => {
       }, []); // Empty dependency array ensures this effect runs once on mount
       return (
         <div>
+            <Toast ref={toast}/>
             <div className="bg-primary-800 text-gray-100 p-3 flex justify-content-between lg:justify-content-center align-items-center flex-wrap " style={{height:"12rem", background:`url(https://media.licdn.com/dms/image/D4E12AQGc2LEesn-HrQ/article-cover_image-shrink_720_1280/0/1681832199466?e=2147483647&v=beta&t=bJuX740RPF6GGjAshQAtlzVzKjOSMUmn5_ghvTOS0kQ)`}}>
             {/* <img src={data.image} style={{width:'180px', height:'180px', borderRadius:"20%", position:"relative", top:"45px"}}/> */}
             <div style={{borderRadius:"50%", position:"relative", top:"75px"}}> 
@@ -60,7 +62,7 @@ const BeneficiaryManagement = () => {
                   <Divider />
                   <li className="flex align-items-center mb-3">
                     <i className="pi pi-check-circle text-green-500 mr-2"></i>
-                    <span>name</span>
+                    <span>Hi {manageArray[0].benficiaryName} <br/> Veiw you Inherritance details on this page</span>
                   </li>
                 </ul>
               </Card>
@@ -70,26 +72,27 @@ const BeneficiaryManagement = () => {
             <div className="card">
             <TabView>
                 <TabPanel header="Details">
-                    <p className="m-0">
-                        long deets
-                    </p>
-                    <span>Rating  </span>  :<Rating value={5} readOnly cancel={false} />
-                </TabPanel>
-                <TabPanel header="transaction">
-                    {/* <Editor value={usage} headerTemplate={header} readOnly style={{ height: '220px' }}/>
-                     */}
-                     <h1>eq</h1>
-                </TabPanel>
-                <TabPanel header="stream">
-                    {/* <Editor value={usage} headerTemplate={header} readOnly style={{ height: '220px' }}/>
-                     */}
-                     <h1>eq</h1>
+                    <Accordion>
+                        <AccordionTab header="View stream details">
+                            <span>Beneficiary name: {manageArray[0].benficiaryName}</span>
+                            <br/>
+                            <span>Beneficiary Address: {manageArray[0].beneficiaryAddress}</span>
+                            <br/>
+                            <span>details from the stream creator: {manageArray[0].beneficiaryDetails}</span>
+                            <Divider/>
+                            <span>Stream set up by: {manageArray[0].streamCreatorName}</span>
+                            <Rating value={5} readOnly cancel={false} />
+                        </AccordionTab>
+                    </Accordion>
+
                 </TabPanel>
 
             </TabView>
         </div>
             <div style={{height:"20px"}}></div>
-            <Button  severity='info'  style={{position:"relative", left:"80%"}} onClick={service.callClaim}> claim funds</Button>
+            <Button  severity='info' onClick={()=> service.callClaim().then((data)=>{
+                toast.current.show({severity:'warn', summary: 'Request Not approve', detail:'Failed to process request to claim', life: 6000})
+            })} className='w-full' label='claim funds'/>
             </Card>
             
       
