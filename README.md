@@ -1,70 +1,58 @@
-# Getting Started with Create React App
+# Stream Inherrit
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Stream Inherrit is a blockchain-based legacy planning platform that empowers users to securely transmit assets to their loved ones over time, utilizing the reliability of XRP.
 
-## Available Scripts
+## Table of Contents
+- [Inspiration](#inspiration)
+- [Functionality](#functionality)
+- [Technologies Used](#technologies-used)
+- [Getting Started](#getting-started)
+- [Project Structure](#project-structure)
+- [Contributors](#contributors)
+- [Challenges](#challenges)
+- [Future Enhancements](#future-enhancements)
+- [License](#license)
 
-In the project directory, you can run:
+## Inspiration
 
-### `npm start`
+The idea for Stream Inherrit was born out of the desire to simplify legacy planning and make it accessible to everyone. Witnessing the complexities people face in securing their financial legacies inspired us to create a user-friendly and robust solution.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Functionality
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Stream Inherrit allows users to create payment streams, specifying the duration, frequency, and beneficiaries of their asset transfers. The platform leverages XRP's blockchain technology for secure and transparent transactions.
 
-### `npm test`
+## Technologies Used
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Frontend: [Insert Frontend Technologies]
+- Backend: [Insert Backend Technologies]
+- Blockchain: XRP
+- [Additional Technologies]
 
-### `npm run build`
+## Getting Started
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To get started with Stream Inherrit, follow these steps:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Clone the repository.
+2. Install the necessary dependencies for the frontend and backend.
+3. [Additional Steps]
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Project Structure
 
-### `npm run eject`
+The project is structured as follows:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Contributors
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Zaden Ngobeni
+- Issa Kalonji
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Challenges
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Throughout the development process, we faced challenges such as [mention challenges] but successfully overcame them with dedication and teamwork.
 
-## Learn More
+## Future Enhancements
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+In the future, we plan to enhance Stream Inherrit by [mention future enhancements], incorporating user feedback, and exploring partnerships to broaden its impact.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## License
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is licensed under the [License Name] - see the [LICENSE.md](LICENSE.md) file for details.
