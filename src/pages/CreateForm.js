@@ -119,46 +119,6 @@ const CreateForm = () => {
                         <label  className="block text-900 font-medium mb-2">Release funds aftoer how many months</label>
                         <InputText keyfilter="int" placeholder='Release period' className="w-full mb-3" onChange={(e)=> {setNumberOfMonthsToStream(e.target.value)}}/>
 
-                        <label  className="block text-900 font-medium mb-2">select a chain</label>
-
-                        <div className="h-1rem"></div>
-                        {/* ethereum */}
-                        <div className="">
-                            <Checkbox inputId="ingredient2" name="pizza" value="Mushroom" onChange={e => setEthereum(e.checked)} checked={ethereum} />
-                            <label htmlFor="ingredient2" className="ml-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="20" height="20">
-                                    <image xlinkHref="https://cryptologos.cc/logos/ethereum-eth-logo.svg?v=029" width="64" height="64" />
-                                </svg>
-                                ethereum
-                            </label>
-                        </div>
-
-                        <div className="h-1rem"></div>
-                        {/* polygon */}
-                        <div className="">
-                            <Checkbox inputId="ingredient2" name="pizza" value="Mushroom" onChange={e => setPolygon(e.checked)} checked={polygon} />
-                            <label htmlFor="ingredient2" className="ml-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="20" height="20">
-                                    <image xlinkHref="https://cryptologos.cc/logos/polygon-matic-logo.svg?v=029" width="64" height="64" />
-                                </svg>
-                                polygon
-                            </label>
-                        </div>
-
-
-
-                        <div className="h-1rem"></div>
-                        {/*avalanche*/}
-                        <div className="flex align-items-center">  
-                            <Checkbox inputId="ingredient2" name="pizza" value="Mushroom" onChange={e => setAvalanche(e.checked)} checked={avalanche} />
-                            <label htmlFor="ingredient2" className="ml-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="20" height="20">
-                                    <image xlinkHref="https://cryptologos.cc/logos/avalanche-avax-logo.svg?v=029" width="64" height="64" />
-                                </svg>
-                                avalnche
-                            </label>
-                        </div>
-
                     </div>
                 )}
 
