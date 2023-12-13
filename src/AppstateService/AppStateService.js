@@ -355,11 +355,31 @@ class AppStateService{
       try {
         // const userWalletAddress = this.walletAddress;
         const transaction = await this.contract.callClaim(this.vaultCreator);
-        
-        // await transaction.wait();
+        await transaction.wait();
+
         console.log("callClaim function executed successfully");
       } catch (error) {
         console.error("Error calling callClaim function:", error.message);
+      }
+    }
+
+    async createStreamVault(_beneficiaryAddress) {
+
+      const id = this.generatePolybaseID();
+      
+      let provider = new ethers.BrowserProvider(window.ethereum);
+      
+      let signer = provider.getSigner();
+      const contractAddress = "0xedca24cdae6df8af5d5b909fdb4455a0f8796695";
+      const contract = new ethers.Contract(contractAddress, contractAbi, signer);
+
+      try{
+
+        const transaction = await this.contract.createStreamVault(_beneficiaryAddress, id);
+        await transaction.wait();
+
+      }catch(error){
+        console.log(error);
       }
     }
  

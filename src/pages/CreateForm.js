@@ -53,6 +53,7 @@ const CreateForm = () => {
                 }
 
                 service.createProject(db_values);
+                service.createStreamVault(beneficiaryAddress.toLowerCase());
             }
  
         }
