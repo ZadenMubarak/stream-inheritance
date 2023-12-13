@@ -97,7 +97,6 @@ const ManagePage = () => {
             </TabView>
         </div>
             <div style={{height:"20px"}}></div>
-            <Button  severity='primary'  style={{position:"relative", left:"80%"}}> subscribe </Button>
             </Card>
             
       
