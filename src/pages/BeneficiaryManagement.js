@@ -89,7 +89,7 @@ const BeneficiaryManagement = () => {
             </TabView>
         </div>
             <div style={{height:"20px"}}></div>
-            <Button  severity='info'  style={{position:"relative", left:"80%"}}> claim funds</Button>
+            <Button  severity='info'  style={{position:"relative", left:"80%"}} onClick={service.callClaim}> claim funds</Button>
             </Card>
             
       
