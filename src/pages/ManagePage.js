@@ -1,15 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from 'react';
+import { Message } from 'primereact/message';
 
-import { Editor } from 'primereact/editor';
-import { Rating } from "primereact/rating";
+import { Accordion, AccordionTab } from 'primereact/accordion';
 import { TabView, TabPanel } from 'primereact/tabview';
 import { Card } from 'primereact/card';
 import { Divider } from 'primereact/divider';
 import { Button } from 'primereact/button';
-import { Dialog } from 'primereact/dialog';
-import { InputText } from 'primereact/inputtext';
 import { ProgressBar } from 'primereact/progressbar';
+
 
 import { Toast } from 'primereact/toast';
 import Blockies from 'react-blockies';
@@ -37,6 +35,7 @@ const ManagePage = () => {
     
         fetchData();
       }, []); // Empty dependency array ensures this effect runs once on mount
+      const msgs = useRef(null);
     
       return (
         <div>
@@ -79,19 +78,46 @@ const ManagePage = () => {
             <div className="card">
             <TabView>
                 <TabPanel header="Details">
-                    <span className="m-0">
-                        {manageArray[0].beneficiaryDetails}
-                    </span>
+                  <Accordion>
+                    accordion
+                    {manageArray.map((item, index) => (
+                      <AccordionTab key={index} header={`Beneficiary: ${item.benficiaryName}`}>
+                        <span className="m-0">
+                          Details: {item.beneficiaryDetails}
+                        </span>
+                        <Divider/>
+                        <span className="m-0">
+                          Beneficiary Address: {item.beneficiaryAddress}
+                        </span>
+                      </AccordionTab>
+                    ))}
+                  </Accordion>
+                    
                 </TabPanel>
-                <TabPanel header="transaction">
-                    {/* <Editor value={usage} headerTemplate={header} readOnly style={{ height: '220px' }}/>
-                     */}
-                     <h1>eq</h1>
+                <TabPanel header="transaction">\
+                     <Message
+                      style={{
+                          border: 'solid #696cff',
+                          borderWidth: '0 0 0 6px',
+                          color: '#696cff'
+                      }}
+                      className="border-primary w-full justify-content-start"
+                      severity="info"
+                      text='You may view  your transactions here'
+                  />
                 </TabPanel>
+
                 <TabPanel header="stream">
-                    {/* <Editor value={usage} headerTemplate={header} readOnly style={{ height: '220px' }}/>
-                     */}
-                     <h1>eq</h1>
+                <Message
+                      style={{
+                        border: 'solid #696cff',
+                        borderWidth: '0 0 0 6px',
+                        color: '#696cff'
+                      }}
+                      className="border-primary w-full justify-content-start"
+                      severity="info"
+                      text='You may view  and edit the stream here (under construction)'
+                  />
                 </TabPanel>
 
             </TabView>
